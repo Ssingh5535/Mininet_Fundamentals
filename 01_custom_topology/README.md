@@ -115,7 +115,7 @@ h1 h2
    sudo python3 custom_topo.py
    ```
 
-## What I’re Learning
+## What I'm Learning
 
 * **Python‑based Topology Definition:** Using the `Topo` class and methods like `addHost()`, `addSwitch()`, and `addLink()` to programmatically build network laIts.
 * **Mininet API Workflow:** Instantiating `Mininet()`, calling `net.start()`, inspecting with utilities (`dumpNodeConnections`, `net.pingAll()`), and cleaning up with `net.stop()`.
@@ -125,4 +125,3 @@ h1 h2
 
 ---
 
-*From here, I can extend the lab by adding more hosts, changing link parameters, or integrating a custom controller script.*
