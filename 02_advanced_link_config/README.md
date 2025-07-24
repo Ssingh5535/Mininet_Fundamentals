@@ -1,6 +1,6 @@
 ---
 
-##   02_advanced_link_config
+## 02_advanced_link_config
 
 ```markdown
 # 02. Advanced Link Configuration
