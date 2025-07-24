@@ -1,3 +1,6 @@
+
+## ✏️ 02_advanced_link_config/README.md
+
 ```markdown
 # 02. Advanced Link Configuration
 
@@ -34,9 +37,9 @@ When I execute `link_config.py`, Mininet performs the following steps (with corr
 ```text
 *** Adding hosts: h1 h2
 *** Adding switches: s1
-*** Adding links: (h1, s1) (s1, h2)
+*** Adding links: (10.00Mbit 5ms delay 1.00000% loss) (10.00Mbit 5ms delay 1.00000% loss) (h1, s1) (10.00Mbit 5ms delay 1.00000% loss) (10.00Mbit 5ms delay 1.00000% loss) (s1, h2)
 ```
-* Adds two hosts and one switch, then connects h1↔s1 and s1↔h2 with custom link parameters (`bw=10`, `delay=5ms`, `loss=1%`, `max_queue_size=100`).
+* Adds two hosts and one switch, then connects `h1↔s1` and `s1↔h2` with exactly one `TCLink` qdisc per link configured for 10 Mbps, 5 ms delay, 1% loss, 100‑packet queue.
 
 ```text
 *** Configuring hosts
@@ -52,18 +55,31 @@ s1 ...
 * Starts the controller and the switch.
 
 ```text
-*** Testing default ping with configured link parameters
-h1 -> h2 : 0% packet loss
-h2 -> h1 : 0% packet loss
+*** Dumping host connections
+h1 h1-eth0:s1-eth1
+h2 h2-eth0:s1-eth2
 ```
-* Executes `net.pingAll()` under link constraints.
+* Uses `dumpNodeConnections(net.hosts)` to list each host’s interface and its switch port.
 
 ```text
-*** Testing bandwidth with iperf
-h1 -> h2 : 9.22 Mbits/sec
-h2 -> h1 : 9.18 Mbits/sec
+*** Testing network connectivity (pingAll)
+*** Ping: testing ping reachability
+h1 -> h2
+h2 -> h1
+*** Results: 0% dropped (2/2 received)
 ```
-* Runs `iperf` to measure throughput, verifying the 10 Mbps limit.
+* Executes `net.pingAll()` under the configured link constraints.
+
+```text
+*** Iperf: testing TCP bandwidth h1 → h2
+```
+* Runs a single-direction `iperf` (h1→h2) to measure throughput.
+
+```text
+*** Results: 5.2 Mbits/sec
+*** Results: 5.1 Mbits/sec
+```
+* Verifies that the measured bandwidth is close to the 10 Mbps limit.
 
 ```text
 *** Stopping network
@@ -74,11 +90,12 @@ h2 -> h1 : 9.18 Mbits/sec
 
 ## Running the Example
 
-1. Ensure Mininet is installed and working:
+1. Ensure Mininet (with `iperf`) is installed and working:
 
    ```bash
    which mn        # should return /usr/local/bin/mn or /usr/bin/mn
    mn --version    # verify version
+   which iperf     # ensure the legacy iperf is present
    ```
 
 2. Navigate here and run:
@@ -90,10 +107,9 @@ h2 -> h1 : 9.18 Mbits/sec
 
 ## What I'm Learning
 
-* **Emulated Link Properties:** Using `TCLink` parameters (`bw`, `delay`, `loss`, `max_queue_size`) to simulate real-world link characteristics.  
-* **Traffic Shaping with `tc`:** Applying Linux `tc` commands (TBF, RED) to host interfaces for rate-limiting and queue management.  
-* **Performance Measurement:** Interpreting `pingAll()` and `iperf` results under constrained link conditions.  
-* **Experimentation & Debugging:** Tweaking link configurations and observing effects on latency, packet loss, and throughput.
+* **Emulated Link Properties:** Using a single `TCLink` per link (`bw`, `delay`, `loss`, `max_queue_size`) to model real‑world characteristics.  
+* **Traffic Shaping with `tc`:** Applying Linux `tc` commands (TBF, RED) for fine‑grained rate control and queue management.  
+* **Performance Measurement:** Running `net.pingAll()` and a unidirectional `iperf` to validate latency, packet loss, and throughput under constrained conditions.  
+* **Experimentation & Debugging:** Controlling exactly where and how many qdiscs are applied, and parsing iperf output reliably with regex-based numeric extraction.
 
 ---
-```
