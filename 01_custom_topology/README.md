@@ -23,4 +23,4 @@ cd 01_custom_topology
 sudo python3 custom_topo.py
 ```
 
-[CustomTopo!](/01_custom_topology/CustomTopo.png)
+[!CustomTopo](/01_custom_topology/CustomTopo.png)
