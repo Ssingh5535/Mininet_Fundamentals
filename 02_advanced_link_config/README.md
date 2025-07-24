@@ -1,6 +1,6 @@
 ---
 
-## ✏️ 02_advanced_link_config/README.md
+##  ✏️ 02_advanced_link_config
 
 ```markdown
 # 02. Advanced Link Configuration
