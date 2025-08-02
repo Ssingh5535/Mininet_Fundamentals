@@ -33,7 +33,7 @@
 
 3. **Observe the result**:
 
-   ![AutomatedExperiments](AutomatedExperiments.png)
+   ![AutomatedExperiments](Automation.png)
 
    In this run you can see:
    - **0% Packet Loss** on the `pingall` test.
