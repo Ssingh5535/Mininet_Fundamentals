@@ -56,17 +56,17 @@ if __name__ == '__main__':
     net = Mininet(
         topo=SimpleTopo(),
         link=TCLink,
-        controller=Controller   # <— start an OVS testcontroller for us
+        controller=Controller   # <— start an OVS testcontroller
     )
     net.start()
 
     print("\n*** Dumping host connections")
     dumpNodeConnections(net.hosts)
 
-    # 2) Run our “batch” commands
+    # 2) Run  “batch” commands
     run_batch(net, 'commands.txt')
 
-    # 3) A direct host‐level iperf (in case you want it)
+    # 3) A direct host‐level iperf 
     print("\n*** Running host‐level iperf via Python API")
     h1, h2 = net.get('h1', 'h2')
     h2.cmd('iperf -s -t 5 &')
