@@ -18,7 +18,7 @@ cd 03_controller_integration
 sudo python3 controller_integration.py
 ```
 
-![ControllerIntegration](/03_controller_integration/ControllerIntegration.png)
+![ControllerIntegration](/03_controller_integration/Controller.png)
 
 # 03. Controller Integration
 
