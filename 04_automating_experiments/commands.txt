@@ -1,0 +1,4 @@
+# CLI batch file for test commands
+pingall
+iperf h1 h2
+exit
