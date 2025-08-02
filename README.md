@@ -21,4 +21,4 @@ A hands‑on collection of Mininet labs demonstrating intermediate skills:
 ```bash
 sudo apt-get update
 sudo apt-get install -y mininet git python3-pip
-pip3 install ryu  # or other controller libs you plan to use
+pip3 install ryu  # for controller libs I plan to use.
