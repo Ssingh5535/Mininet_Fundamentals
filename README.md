@@ -9,7 +9,7 @@ A hands‑on collection of Mininet labs demonstrating intermediate skills:
    Create links with custom bandwidth, latency, loss and queue parameters; apply traffic shaping with Linux `tc`.
 
 3. **Controller Integration**  
-   Connect your Mininet network to POX, Ryu or ONOS controllers, run multiple controllers, and experiment with failover.
+   Connect your Mininet network to Ryu controllers, run multiple controllers, and experiment with failover.
 
 4. **Automating Experiments**  
    Use batch mode (`mn --custom`), script CLI commands in Python, and integrate Mininet runs into your test suites.
